@@ -1,0 +1,11 @@
+/Users/rahimova/ADO INTRO/Domain/bin/Debug/net10.0/Domain.deps.json
+/Users/rahimova/ADO INTRO/Domain/bin/Debug/net10.0/Domain.dll
+/Users/rahimova/ADO INTRO/Domain/bin/Debug/net10.0/Domain.pdb
+/Users/rahimova/ADO INTRO/Domain/obj/Debug/net10.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rahimova/ADO INTRO/Domain/obj/Debug/net10.0/Domain.AssemblyInfoInputs.cache
+/Users/rahimova/ADO INTRO/Domain/obj/Debug/net10.0/Domain.AssemblyInfo.cs
+/Users/rahimova/ADO INTRO/Domain/obj/Debug/net10.0/Domain.csproj.CoreCompileInputs.cache
+/Users/rahimova/ADO INTRO/Domain/obj/Debug/net10.0/Domain.dll
+/Users/rahimova/ADO INTRO/Domain/obj/Debug/net10.0/refint/Domain.dll
+/Users/rahimova/ADO INTRO/Domain/obj/Debug/net10.0/Domain.pdb
+/Users/rahimova/ADO INTRO/Domain/obj/Debug/net10.0/ref/Domain.dll

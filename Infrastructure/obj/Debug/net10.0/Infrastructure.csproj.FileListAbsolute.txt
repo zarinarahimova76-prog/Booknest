@@ -1,0 +1,15 @@
+/Users/rahimova/ADO INTRO/Infrastructure/bin/Debug/net10.0/Infrastructure.deps.json
+/Users/rahimova/ADO INTRO/Infrastructure/bin/Debug/net10.0/Infrastructure.dll
+/Users/rahimova/ADO INTRO/Infrastructure/bin/Debug/net10.0/Infrastructure.pdb
+/Users/rahimova/ADO INTRO/Infrastructure/bin/Debug/net10.0/Domain.dll
+/Users/rahimova/ADO INTRO/Infrastructure/bin/Debug/net10.0/Domain.pdb
+/Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/Infrastructure.csproj.AssemblyReference.cache
+/Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/Infrastructure.AssemblyInfoInputs.cache
+/Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/Infrastructure.AssemblyInfo.cs
+/Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/Infrastructure.csproj.CoreCompileInputs.cache
+/Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/Infrastr.15EFFBFE.Up2Date
+/Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/Infrastructure.dll
+/Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/refint/Infrastructure.dll
+/Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/Infrastructure.pdb
+/Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/ref/Infrastructure.dll
