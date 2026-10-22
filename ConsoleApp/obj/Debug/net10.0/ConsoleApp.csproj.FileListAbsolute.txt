@@ -21,3 +21,4 @@
 /Users/rahimova/ADO INTRO/ConsoleApp/obj/Debug/net10.0/ConsoleApp.pdb
 /Users/rahimova/ADO INTRO/ConsoleApp/obj/Debug/net10.0/ConsoleApp.genruntimeconfig.cache
 /Users/rahimova/ADO INTRO/ConsoleApp/obj/Debug/net10.0/ref/ConsoleApp.dll
+/Users/rahimova/ADO INTRO/ConsoleApp/obj/Debug/net10.0/ConsoleApp.sourcelink.json

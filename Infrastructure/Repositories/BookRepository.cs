@@ -64,6 +64,56 @@ public class BookRepository : IBookRepository
         return books;
     }
 
+        public List<Book> GetBooksByAuthor(int authorId)
+    {
+        using var conn = Database.Connection();
+        conn.Open();
+
+        var query = "select id, title, publishedyear, totalcopies from books where author_id = @authorId";
+        var cmd = new NpgsqlCommand(query, conn);
+        cmd.Parameters.AddWithValue("@authorId", authorId);
+
+        var data = cmd.ExecuteReader();
+        var books = new List<Book>();
+
+        while (data.Read())
+        {
+            var book = new Book();
+            book.Id = data.GetInt32(0);
+            book.Title = data.GetString(1);
+            book.PublishedYear = data.GetInt32(2);
+            book.TotalCopies = data.GetInt32(3);
+            books.Add(book);
+        }
+
+        return books;
+    }
+
+    public List<Book> GetBooksByGenre(int genreId)
+    {
+        using var conn = Database.Connection();
+        conn.Open();
+
+        var query = "select id, title, publishedyear, totalcopies from books where genre_id = @genreId";
+        var cmd = new NpgsqlCommand(query, conn);
+        cmd.Parameters.AddWithValue("@genreId", genreId);
+
+        var data = cmd.ExecuteReader();
+        var books = new List<Book>();
+
+        while (data.Read())
+        {
+            var book = new Book();
+            book.Id = data.GetInt32(0);
+            book.Title = data.GetString(1);
+            book.PublishedYear = data.GetInt32(2);
+            book.TotalCopies = data.GetInt32(3);
+            books.Add(book);
+        }
+
+        return books;
+    }
+
     public void UpdateBook(Book book)
     {
         using var conn = Database.Connection();

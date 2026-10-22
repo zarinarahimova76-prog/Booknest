@@ -13,3 +13,4 @@
 /Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/refint/Infrastructure.dll
 /Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/Infrastructure.pdb
 /Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/ref/Infrastructure.dll
+/Users/rahimova/ADO INTRO/Infrastructure/obj/Debug/net10.0/Infrastructure.sourcelink.json

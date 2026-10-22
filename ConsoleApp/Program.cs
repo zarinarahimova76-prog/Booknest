@@ -3,6 +3,7 @@ using Infrastructure.Repositories;
 
 var repo = new BookRepository();
 var authorRepo = new AuthorRepository();
+var genreRepo = new GenreRepository();
 
 while (true)
 {
@@ -10,9 +11,12 @@ while (true)
     System.Console.WriteLine(@"1. Show all books.
 2. Show book by id.
 3. Add new book.
-4. Update book.
+4. Update bookю
 5. Delete book.
 6. Manage authors.
+7. Manage genres.
+8. Find books by author.
+9. Find books by genre.
 0. Exit.");
     var a = Console.ReadLine();
     System.Console.WriteLine("======================================");
@@ -186,6 +190,142 @@ while (true)
             }
             break;
         }
+        
+        case "7":
+        {
+            while (true)
+            {
+                Console.WriteLine("===== GENRES =====");
+                Console.WriteLine(@"1. Show all genres.
+2. Show genre by id.
+3. Add genre.
+4. Update genre.
+5. Delete genre.
+0. Back.");
+
+                var choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        var genres = genreRepo.GetAll();
+
+                        foreach (var genre in genres)
+                        {
+                            Console.WriteLine(genre.Id + " " + genre.Name);
+                        }
+                        break;
+
+                    case "2":
+                        Console.Write("Enter id: ");
+                        var genreId = Convert.ToInt32(Console.ReadLine());
+
+                        var foundGenre = genreRepo.GetById(genreId);
+
+                        if (foundGenre != null)
+                        {
+                            Console.WriteLine(foundGenre.Id + " " + foundGenre.Name);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Genre not found!");
+                        }
+                        break;
+
+                    case "3":
+                        Console.Write("Enter genre name: ");
+                        var genreName = Console.ReadLine()!;
+
+                        var newGenre = new Genre()
+                        {
+                            Name = genreName
+                        };
+
+                        genreRepo.Add(newGenre);
+                        break;
+
+                    case "4":
+                        Console.Write("Enter id: ");
+                        var updateGenreId = Convert.ToInt32(Console.ReadLine());
+
+                        var existingGenre = genreRepo.GetById(updateGenreId);
+
+                        if (existingGenre == null)
+                        {
+                            Console.WriteLine("Genre not found!");
+                            break;
+                        }
+
+                        Console.Write("Enter new name: ");
+                        existingGenre.Name = Console.ReadLine()!;
+
+                        genreRepo.Update(existingGenre);
+                        break;
+
+                    case "5":
+                        Console.Write("Enter id: ");
+                        var deleteGenreId = Convert.ToInt32(Console.ReadLine());
+
+                        genreRepo.Delete(deleteGenreId);
+                        break;
+
+                    case "0":
+                        break;
+
+                    default:
+                        Console.WriteLine("Wrong choice!");
+                        break;
+                }
+
+                if (choice == "0")
+                {
+                    break;
+                }
+            }
+            break;
+        }
+                case "8":
+            Console.Write("Enter author id: ");
+            var searchAuthorId = Convert.ToInt32(Console.ReadLine());
+
+            var authorBooks = repo.GetBooksByAuthor(searchAuthorId);
+
+            foreach (var book in authorBooks)
+            {
+                Console.WriteLine(
+                    book.Id + " " +
+                    book.Title + " " +
+                    book.PublishedYear + " " +
+                    book.TotalCopies);
+            }
+
+            if (authorBooks.Count == 0)
+            {
+                Console.WriteLine("No books found!");
+            }
+            break;
+
+        case "9":
+            Console.Write("Enter genre id: ");
+            var searchGenreId = Convert.ToInt32(Console.ReadLine());
+
+            var genreBooks = repo.GetBooksByGenre(searchGenreId);
+
+            foreach (var book in genreBooks)
+            {
+                Console.WriteLine(
+                    book.Id + " " +
+                    book.Title + " " +
+                    book.PublishedYear + " " +
+                    book.TotalCopies);
+            }
+
+            if (genreBooks.Count == 0)
+            {
+                Console.WriteLine("No books found!");
+            }
+            break;
+
 
         case "0":
             System.Console.WriteLine("Exiting ...");

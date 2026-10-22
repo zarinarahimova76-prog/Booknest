@@ -1,12 +1,16 @@
-using Domain.Models;
-namespace Domain.Interfaces;
 
+using Domain.Models;
+
+namespace Domain.Interfaces;
 
 public interface IBookRepository
 {
     void AddBook(Book book);
-     void UpdateBook(Book book);
+    void UpdateBook(Book book);
     void DeleteBook(int id);
     Book GetBook(int id);
     List<Book> GetBooks();
+
+    List<Book> GetBooksByAuthor(int authorId);
+    List<Book> GetBooksByGenre(int genreId);
 }
