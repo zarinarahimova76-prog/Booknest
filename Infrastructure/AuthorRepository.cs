@@ -8,37 +8,39 @@ namespace Infrastructure.Repositories;
 
 public class AuthorRepository : IAuthorRepository
 {
-    public void Add(Author author)
+    public async Task Add(Author author)
     {
-        using var connection = Database.Connection();
-        connection.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "insert into authors(full_name, country, birth_year) values(@fullname, @country, @birthyear)";
 
-        using var cmd = new NpgsqlCommand(query, connection);
-        cmd.Parameters.AddWithValue("@fullname", author.FullName);
-        cmd.Parameters.AddWithValue("@country", author.Country);
-        cmd.Parameters.AddWithValue("@birthyear", author.BirthYear);
+        await using var cmd = new NpgsqlCommand(query, connection);
+        cmd.Parameters.AddWithValue("fullname", author.FullName);
+        cmd.Parameters.AddWithValue("country", author.Country);
+        cmd.Parameters.AddWithValue("birthyear", author.BirthYear);
 
-        cmd.ExecuteNonQuery();
+        await cmd.ExecuteNonQueryAsync();
 
         Console.WriteLine("Added!");
     }
 
-    public List<Author> GetAll()
+    public async Task<List<Author>> GetAll()
     {
-        using var connection = Database.Connection();
-        connection.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "select id, full_name, country, birth_year from authors";
-        using var cmd = new NpgsqlCommand(query, connection);
-        using var data = cmd.ExecuteReader();
+
+        await using var cmd = new NpgsqlCommand(query, connection);
+        await using var data = await cmd.ExecuteReaderAsync();
 
         var authors = new List<Author>();
 
-        while (data.Read())
+        while (await data.ReadAsync())
         {
             var author = new Author();
+
             author.Id = data.GetInt32(0);
             author.FullName = data.GetString(1);
             author.Country = data.GetString(2);
@@ -50,20 +52,22 @@ public class AuthorRepository : IAuthorRepository
         return authors;
     }
 
-    public Author? GetById(int id)
+    public async Task<Author?> GetById(int id)
     {
-        using var connection = Database.Connection();
-        connection.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "select id, full_name, country, birth_year from authors where id = @id";
-        using var cmd = new NpgsqlCommand(query, connection);
-        cmd.Parameters.AddWithValue("@id", id);
 
-        using var data = cmd.ExecuteReader();
+        await using var cmd = new NpgsqlCommand(query, connection);
+        cmd.Parameters.AddWithValue("id", id);
 
-        if (data.Read())
+        await using var data = await cmd.ExecuteReaderAsync();
+
+        if (await data.ReadAsync())
         {
             var author = new Author();
+
             author.Id = data.GetInt32(0);
             author.FullName = data.GetString(1);
             author.Country = data.GetString(2);
@@ -75,34 +79,36 @@ public class AuthorRepository : IAuthorRepository
         return null;
     }
 
-    public void Update(Author author)
+    public async Task Update(Author author)
     {
-        using var connection = Database.Connection();
-        connection.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "update authors set full_name = @fullname, country = @country, birth_year = @birthyear where id = @id";
 
-        using var cmd = new NpgsqlCommand(query, connection);
-        cmd.Parameters.AddWithValue("@fullname", author.FullName);
-        cmd.Parameters.AddWithValue("@country", author.Country);
-        cmd.Parameters.AddWithValue("@birthyear", author.BirthYear);
-        cmd.Parameters.AddWithValue("@id", author.Id);
+        await using var cmd = new NpgsqlCommand(query, connection);
 
-        cmd.ExecuteNonQuery();
+        cmd.Parameters.AddWithValue("fullname", author.FullName);
+        cmd.Parameters.AddWithValue("country", author.Country);
+        cmd.Parameters.AddWithValue("birthyear", author.BirthYear);
+        cmd.Parameters.AddWithValue("id", author.Id);
+
+        await cmd.ExecuteNonQueryAsync();
 
         Console.WriteLine("Updated!");
     }
 
-    public void Delete(int id)
+    public async Task Delete(int id)
     {
-        using var connection = Database.Connection();
-        connection.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "delete from authors where id = @id";
-        using var cmd = new NpgsqlCommand(query, connection);
-        cmd.Parameters.AddWithValue("@id", id);
 
-        cmd.ExecuteNonQuery();
+        await using var cmd = new NpgsqlCommand(query, connection);
+        cmd.Parameters.AddWithValue("id", id);
+
+        await cmd.ExecuteNonQueryAsync();
 
         Console.WriteLine("Deleted!");
     }

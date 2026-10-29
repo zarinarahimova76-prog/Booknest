@@ -8,34 +8,34 @@ namespace Infrastructure.Repositories;
 
 public class GenreRepository : IGenreRepository
 {
-    public void Add(Genre genre)
+    public async Task Add(Genre genre)
     {
-        using var connection = Database.Connection();
-        connection.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "insert into genres(name) values(@name)";
 
-        using var cmd = new NpgsqlCommand(query, connection);
+        await using var cmd = new NpgsqlCommand(query, connection);
         cmd.Parameters.AddWithValue("@name", genre.Name ?? "");
 
-        cmd.ExecuteNonQuery();
+        await cmd.ExecuteNonQueryAsync();
 
         Console.WriteLine("Added!");
     }
 
-    public List<Genre> GetAll()
+    public async Task<List<Genre>> GetAll()
     {
-        using var connection = Database.Connection();
-        connection.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "select id, name from genres";
 
-        using var cmd = new NpgsqlCommand(query, connection);
-        using var data = cmd.ExecuteReader();
+        await using var cmd = new NpgsqlCommand(query, connection);
+        await using var data = await cmd.ExecuteReaderAsync();
 
         var genres = new List<Genre>();
 
-        while (data.Read())
+        while (await data.ReadAsync())
         {
             var genre = new Genre();
             genre.Id = data.GetInt32(0);
@@ -47,19 +47,19 @@ public class GenreRepository : IGenreRepository
         return genres;
     }
 
-    public Genre? GetById(int id)
+    public async Task<Genre?> GetById(int id)
     {
-        using var connection = Database.Connection();
-        connection.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "select id, name from genres where id = @id";
 
-        using var cmd = new NpgsqlCommand(query, connection);
+        await using var cmd = new NpgsqlCommand(query, connection);
         cmd.Parameters.AddWithValue("@id", id);
 
-        using var data = cmd.ExecuteReader();
+        await using var data = await cmd.ExecuteReaderAsync();
 
-        if (data.Read())
+        if (await data.ReadAsync())
         {
             var genre = new Genre();
             genre.Id = data.GetInt32(0);
@@ -71,33 +71,33 @@ public class GenreRepository : IGenreRepository
         return null;
     }
 
-    public void Update(Genre genre)
+    public async Task Update(Genre genre)
     {
-        using var connection = Database.Connection();
-        connection.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "update genres set name = @name where id = @id";
 
-        using var cmd = new NpgsqlCommand(query, connection);
+        await using var cmd = new NpgsqlCommand(query, connection);
         cmd.Parameters.AddWithValue("@name", genre.Name ?? "");
         cmd.Parameters.AddWithValue("@id", genre.Id);
 
-        cmd.ExecuteNonQuery();
+        await cmd.ExecuteNonQueryAsync();
 
         Console.WriteLine("Updated!");
     }
 
-    public void Delete(int id)
+    public async Task Delete(int id)
     {
-        using var connection = Database.Connection();
-        connection.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "delete from genres where id = @id";
 
-        using var cmd = new NpgsqlCommand(query, connection);
+        await using var cmd = new NpgsqlCommand(query, connection);
         cmd.Parameters.AddWithValue("@id", id);
 
-        cmd.ExecuteNonQuery();
+        await cmd.ExecuteNonQueryAsync();
 
         Console.WriteLine("Deleted!");
     }

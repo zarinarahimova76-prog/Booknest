@@ -1,3 +1,4 @@
+
 using Domain.Interfaces;
 using Domain.Models;
 using Infrastructure.Data;
@@ -7,123 +8,171 @@ namespace Infrastructure.Repositories;
 
 public class BookRepository : IBookRepository
 {
-    public void AddBook(Book book)
+    public async Task AddBook(Book book)
     {
-        using var connection = Database.Connection();
-        connection.Open();
-        var query =  $"insert into books(title, publishedyear, totalcopies) values('{book.Title}', {book.PublishedYear}, {book.TotalCopies})";
-        var cmd = new NpgsqlCommand(query, connection);
-         cmd.ExecuteNonQuery();
-        System.Console.WriteLine("Added book successfully!");
-    }
-     public void DeleteBook(int id)
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = $"delete from books where id={id}";
-        var cmd = new NpgsqlCommand(query, conn);
-        cmd.ExecuteNonQuery();
-        System.Console.WriteLine("Deleted!");
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
+
+        var query = "insert into books (title, publishedyear, totalcopies) values (@title, @publishedyear, @totalcopies)";
+
+        await using var cmd = new NpgsqlCommand(query, connection);
+
+        cmd.Parameters.AddWithValue("title", book.Title);
+        cmd.Parameters.AddWithValue("publishedyear", book.PublishedYear);
+        cmd.Parameters.AddWithValue("totalcopies", book.TotalCopies);
+
+        await cmd.ExecuteNonQueryAsync();
+
+        Console.WriteLine("Added book successfully!");
     }
 
-    public Book GetBook(int id)
+    public async Task UpdateBook(Book book)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = $"select id, title, publishedyear, totalcopies from books where id={id}";
-        var cmd = new NpgsqlCommand(query, conn);
-        var data = cmd.ExecuteReader();
-        var book = new Book();
-        while (data.Read())
-        {
-            book.Id = data.GetInt32(0);
-            book.Title = data.GetString(1);
-            book.PublishedYear = data.GetInt32(2);
-            book.TotalCopies = data.GetInt32(3);
-        }
-        return book;
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
+
+        var query = "update books set title = @title, publishedyear = @publishedyear, totalcopies = @totalcopies where id = @id";
+
+        await using var cmd = new NpgsqlCommand(query, connection);
+
+        cmd.Parameters.AddWithValue("title", book.Title);
+        cmd.Parameters.AddWithValue("publishedyear", book.PublishedYear);
+        cmd.Parameters.AddWithValue("totalcopies", book.TotalCopies);
+        cmd.Parameters.AddWithValue("id", book.Id);
+
+        await cmd.ExecuteNonQueryAsync();
+
+        Console.WriteLine("Updated!");
     }
 
-    public List<Book> GetBooks()
+    public async Task DeleteBook(int id)
     {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = $"select id, title, publishedyear, totalcopies from books";
-        var cmd = new NpgsqlCommand(query, conn);
-        var data = cmd.ExecuteReader();
-        var books = new List<Book>();
-        while (data.Read())
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
+
+        var query = "delete from books where id = @id";
+
+        await using var cmd = new NpgsqlCommand(query, connection);
+
+        cmd.Parameters.AddWithValue("id", id);
+
+        await cmd.ExecuteNonQueryAsync();
+
+        Console.WriteLine("Deleted!");
+    }
+
+    public async Task<Book> GetBook(int id)
+    {
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
+
+        var query = "select id, title, publishedyear, totalcopies from books where id = @id";
+
+        await using var cmd = new NpgsqlCommand(query, connection);
+
+        cmd.Parameters.AddWithValue("id", id);
+
+        await using var data = await cmd.ExecuteReaderAsync();
+
+        if (await data.ReadAsync())
         {
             var book = new Book();
+
             book.Id = data.GetInt32(0);
             book.Title = data.GetString(1);
             book.PublishedYear = data.GetInt32(2);
             book.TotalCopies = data.GetInt32(3);
+
+            return book;
+        }
+
+        throw new Exception("Book not found");
+    }
+
+    public async Task<List<Book>> GetBooks()
+    {
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
+
+        var query = "select id, title, publishedyear, totalcopies from books";
+
+        await using var cmd = new NpgsqlCommand(query, connection);
+        await using var data = await cmd.ExecuteReaderAsync();
+
+        var books = new List<Book>();
+
+        while (await data.ReadAsync())
+        {
+            var book = new Book();
+
+            book.Id = data.GetInt32(0);
+            book.Title = data.GetString(1);
+            book.PublishedYear = data.GetInt32(2);
+            book.TotalCopies = data.GetInt32(3);
+
             books.Add(book);
         }
+
         return books;
     }
 
-        public List<Book> GetBooksByAuthor(int authorId)
+    public async Task<List<Book>> GetBooksByAuthor(int authorId)
     {
-        using var conn = Database.Connection();
-        conn.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "select id, title, publishedyear, totalcopies from books where author_id = @authorId";
-        var cmd = new NpgsqlCommand(query, conn);
-        cmd.Parameters.AddWithValue("@authorId", authorId);
 
-        var data = cmd.ExecuteReader();
+        await using var cmd = new NpgsqlCommand(query, connection);
+
+        cmd.Parameters.AddWithValue("authorId", authorId);
+
+        await using var data = await cmd.ExecuteReaderAsync();
+
         var books = new List<Book>();
 
-        while (data.Read())
+        while (await data.ReadAsync())
         {
             var book = new Book();
+
             book.Id = data.GetInt32(0);
             book.Title = data.GetString(1);
             book.PublishedYear = data.GetInt32(2);
             book.TotalCopies = data.GetInt32(3);
+
             books.Add(book);
         }
 
         return books;
     }
 
-    public List<Book> GetBooksByGenre(int genreId)
+    public async Task<List<Book>> GetBooksByGenre(int genreId)
     {
-        using var conn = Database.Connection();
-        conn.Open();
+        await using var connection = Database.Connection();
+        await connection.OpenAsync();
 
         var query = "select id, title, publishedyear, totalcopies from books where genre_id = @genreId";
-        var cmd = new NpgsqlCommand(query, conn);
-        cmd.Parameters.AddWithValue("@genreId", genreId);
 
-        var data = cmd.ExecuteReader();
+        await using var cmd = new NpgsqlCommand(query, connection);
+
+        cmd.Parameters.AddWithValue("genreId", genreId);
+
+        await using var data = await cmd.ExecuteReaderAsync();
+
         var books = new List<Book>();
 
-        while (data.Read())
+        while (await data.ReadAsync())
         {
             var book = new Book();
+
             book.Id = data.GetInt32(0);
             book.Title = data.GetString(1);
             book.PublishedYear = data.GetInt32(2);
             book.TotalCopies = data.GetInt32(3);
+
             books.Add(book);
         }
 
         return books;
     }
-
-    public void UpdateBook(Book book)
-    {
-        using var conn = Database.Connection();
-        conn.Open();
-        var query = $"update books set title='{book.Title}', publishedyear={book.PublishedYear}, totalcopies={book.TotalCopies} where id={book.Id}";
-        var cmd = new NpgsqlCommand(query, conn);
-        cmd.ExecuteNonQuery();
-        System.Console.WriteLine("Updated!");
-    }
-
 }
-
-
