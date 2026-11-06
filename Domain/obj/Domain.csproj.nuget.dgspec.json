@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/rahimova/ADO INTRO/Domain/Domain.csproj": {}
+    "/Users/rahimova/Desktop/BookNest-Full/Domain/Domain.csproj": {}
   },
   "projects": {
-    "/Users/rahimova/ADO INTRO/Domain/Domain.csproj": {
+    "/Users/rahimova/Desktop/BookNest-Full/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/rahimova/ADO INTRO/Domain/Domain.csproj",
+        "projectUniqueName": "/Users/rahimova/Desktop/BookNest-Full/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/Users/rahimova/ADO INTRO/Domain/Domain.csproj",
+        "projectPath": "/Users/rahimova/Desktop/BookNest-Full/Domain/Domain.csproj",
         "packagesPath": "/Users/rahimova/.nuget/packages/",
-        "outputPath": "/Users/rahimova/ADO INTRO/Domain/obj/",
+        "outputPath": "/Users/rahimova/Desktop/BookNest-Full/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/rahimova/.nuget/NuGet/NuGet.Config"

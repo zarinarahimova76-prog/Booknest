@@ -10,3 +10,15 @@
 /Users/rahimova/ADO INTRO/Domain/obj/Debug/net10.0/Domain.pdb
 /Users/rahimova/ADO INTRO/Domain/obj/Debug/net10.0/ref/Domain.dll
 /Users/rahimova/ADO INTRO/Domain/obj/Debug/net10.0/Domain.sourcelink.json
+/Users/rahimova/Desktop/BookNest-Full/Domain/bin/Debug/net10.0/Domain.deps.json
+/Users/rahimova/Desktop/BookNest-Full/Domain/bin/Debug/net10.0/Domain.dll
+/Users/rahimova/Desktop/BookNest-Full/Domain/bin/Debug/net10.0/Domain.pdb
+/Users/rahimova/Desktop/BookNest-Full/Domain/obj/Debug/net10.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rahimova/Desktop/BookNest-Full/Domain/obj/Debug/net10.0/Domain.AssemblyInfoInputs.cache
+/Users/rahimova/Desktop/BookNest-Full/Domain/obj/Debug/net10.0/Domain.AssemblyInfo.cs
+/Users/rahimova/Desktop/BookNest-Full/Domain/obj/Debug/net10.0/Domain.csproj.CoreCompileInputs.cache
+/Users/rahimova/Desktop/BookNest-Full/Domain/obj/Debug/net10.0/Domain.sourcelink.json
+/Users/rahimova/Desktop/BookNest-Full/Domain/obj/Debug/net10.0/Domain.dll
+/Users/rahimova/Desktop/BookNest-Full/Domain/obj/Debug/net10.0/refint/Domain.dll
+/Users/rahimova/Desktop/BookNest-Full/Domain/obj/Debug/net10.0/Domain.pdb
+/Users/rahimova/Desktop/BookNest-Full/Domain/obj/Debug/net10.0/ref/Domain.dll

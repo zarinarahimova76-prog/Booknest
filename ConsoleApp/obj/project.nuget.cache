@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6cxvPMZMdsQ=",
+  "dgSpecHash": "ndtB9/R6XdQ=",
   "success": true,
-  "projectFilePath": "/Users/rahimova/ADO INTRO/ConsoleApp/ConsoleApp.csproj",
+  "projectFilePath": "/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/ConsoleApp.csproj",
   "expectedPackageFiles": [
     "/Users/rahimova/.nuget/packages/dapper/2.1.89/dapper.2.1.89.nupkg.sha512",
     "/Users/rahimova/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.0/microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",

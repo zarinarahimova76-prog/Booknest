@@ -260,11 +260,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/rahimova/ADO INTRO/ConsoleApp/ConsoleApp.csproj",
+      "projectUniqueName": "/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/ConsoleApp.csproj",
       "projectName": "ConsoleApp",
-      "projectPath": "/Users/rahimova/ADO INTRO/ConsoleApp/ConsoleApp.csproj",
+      "projectPath": "/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/ConsoleApp.csproj",
       "packagesPath": "/Users/rahimova/.nuget/packages/",
-      "outputPath": "/Users/rahimova/ADO INTRO/ConsoleApp/obj/",
+      "outputPath": "/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/rahimova/.nuget/NuGet/NuGet.Config"
@@ -280,11 +280,11 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "/Users/rahimova/ADO INTRO/Domain/Domain.csproj": {
-              "projectPath": "/Users/rahimova/ADO INTRO/Domain/Domain.csproj"
+            "/Users/rahimova/Desktop/BookNest-Full/Domain/Domain.csproj": {
+              "projectPath": "/Users/rahimova/Desktop/BookNest-Full/Domain/Domain.csproj"
             },
-            "/Users/rahimova/ADO INTRO/Infrastructure/Infrastructure.csproj": {
-              "projectPath": "/Users/rahimova/ADO INTRO/Infrastructure/Infrastructure.csproj"
+            "/Users/rahimova/Desktop/BookNest-Full/Infrastructure/Infrastructure.csproj": {
+              "projectPath": "/Users/rahimova/Desktop/BookNest-Full/Infrastructure/Infrastructure.csproj"
             }
           }
         }

@@ -23,3 +23,28 @@
 /Users/rahimova/ADO INTRO/ConsoleApp/obj/Debug/net10.0/ref/ConsoleApp.dll
 /Users/rahimova/ADO INTRO/ConsoleApp/obj/Debug/net10.0/ConsoleApp.sourcelink.json
 /Users/rahimova/ADO INTRO/ConsoleApp/bin/Debug/net10.0/Dapper.dll
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/ConsoleApp
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/ConsoleApp.deps.json
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/ConsoleApp.runtimeconfig.json
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/ConsoleApp.dll
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/ConsoleApp.pdb
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/Dapper.dll
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/Npgsql.dll
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/Domain.dll
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/Infrastructure.dll
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/Domain.pdb
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/bin/Debug/net10.0/Infrastructure.pdb
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/ConsoleApp.csproj.AssemblyReference.cache
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/ConsoleApp.AssemblyInfoInputs.cache
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/ConsoleApp.AssemblyInfo.cs
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/ConsoleApp.csproj.CoreCompileInputs.cache
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/ConsoleApp.sourcelink.json
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/ConsoleApp.csproj.Up2Date
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/ConsoleApp.dll
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/refint/ConsoleApp.dll
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/ConsoleApp.pdb
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/ConsoleApp.genruntimeconfig.cache
+/Users/rahimova/Desktop/BookNest-Full/ConsoleApp/obj/Debug/net10.0/ref/ConsoleApp.dll

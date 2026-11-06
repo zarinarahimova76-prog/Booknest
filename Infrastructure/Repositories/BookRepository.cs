@@ -19,27 +19,33 @@ public class BookRepository : IBookRepository
         Console.WriteLine("Added book successfully!");
     }
 
-    public async Task UpdateBook(Book book)
+  public async Task UpdateBook(Book book)
+{
+    await using var connection = Database.Connection();
+
+    var query = "update books set title = @Title, publishedyear = @PublishedYear, totalcopies = @TotalCopies where id = @Id";
+
+    var rows = await connection.ExecuteAsync(query, book);
+
+    if (rows == 0)
     {
-        await using var connection = Database.Connection();
-
-        var query = "update books set title = @Title, publishedyear = @PublishedYear, totalcopies = @TotalCopies where id = @Id";
-
-        await connection.ExecuteAsync(query, book);
-
-        Console.WriteLine("Updated!");
+        throw new Exception("Book not found");
     }
+}
 
-    public async Task DeleteBook(int id)
+public async Task DeleteBook(int id)
+{
+    await using var connection = Database.Connection();
+
+    var query = "delete from books where id = @Id";
+
+    var rows = await connection.ExecuteAsync(query, new { Id = id });
+
+    if (rows == 0)
     {
-        await using var connection = Database.Connection();
-
-        var query = "delete from books where id = @Id";
-
-        await connection.ExecuteAsync(query, new { Id = id });
-
-        Console.WriteLine("Deleted!");
+        throw new Exception("Book not found");
     }
+}
 
     public async Task<Book> GetBook(int id)
     {
