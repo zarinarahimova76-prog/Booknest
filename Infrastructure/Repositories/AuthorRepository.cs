@@ -38,26 +38,30 @@ public class AuthorRepository : IAuthorRepository
 
         return await connection.QueryFirstOrDefaultAsync<Author>(query, new { Id = id });
     }
+public async Task Update(Author author)
+{
+    await using var connection = Database.Connection();
 
-    public async Task Update(Author author)
+    var query = "update authors set full_name = @FullName, country = @Country, birth_year = @BirthYear where id = @Id";
+
+    var rows = await connection.ExecuteAsync(query, author);
+
+    if (rows == 0)
     {
-        await using var connection = Database.Connection();
-
-        var query = "update authors set full_name = @FullName, country = @Country, birth_year = @BirthYear where id = @Id";
-
-        await connection.ExecuteAsync(query, author);
-
-        Console.WriteLine("Updated!");
+        throw new Exception("Author not found");
     }
+}
+public async Task Delete(int id)
+{
+    await using var connection = Database.Connection();
 
-    public async Task Delete(int id)
+    var query = "delete from authors where id = @Id";
+
+    var rows = await connection.ExecuteAsync(query, new { Id = id });
+
+    if (rows == 0)
     {
-        await using var connection = Database.Connection();
-
-        var query = "delete from authors where id = @Id";
-
-        await connection.ExecuteAsync(query, new { Id = id });
-
-        Console.WriteLine("Deleted!");
+        throw new Exception("Author not found");
     }
+}
 }

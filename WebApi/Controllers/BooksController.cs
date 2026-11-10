@@ -1,6 +1,8 @@
+
 using Domain.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.DTOs.Books;
 
 namespace WebApi.Controllers;
 
@@ -19,7 +21,18 @@ public class BooksController : ControllerBase
     public async Task<IActionResult> GetBooks()
     {
         var books = await _bookRepository.GetBooks();
-        return Ok(books);
+
+        var result = books.Select(book => new BookReadDto
+        {
+            Id = book.Id,
+            Title = book.Title,
+            PublishedYear = book.PublishedYear,
+            TotalCopies = book.TotalCopies,
+            AuthorId = book.AuthorId,
+            GenreId = book.GenreId
+        });
+
+        return Ok(result);
     }
 
     [HttpGet("{id:int}")]
@@ -28,7 +41,18 @@ public class BooksController : ControllerBase
         try
         {
             var book = await _bookRepository.GetBook(id);
-            return Ok(book);
+
+            var result = new BookReadDto
+            {
+                Id = book.Id,
+                Title = book.Title,
+                PublishedYear = book.PublishedYear,
+                TotalCopies = book.TotalCopies,
+                AuthorId = book.AuthorId,
+                GenreId = book.GenreId
+            };
+
+            return Ok(result);
         }
         catch (Exception ex) when (ex.Message == "Book not found")
         {
@@ -37,51 +61,80 @@ public class BooksController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddBook(Book book)
+    public async Task<IActionResult> AddBook(BookCreateDto dto)
     {
+        var book = new Book
+        {
+            Title = dto.Title,
+            PublishedYear = dto.PublishedYear,
+            TotalCopies = dto.TotalCopies,
+            AuthorId = dto.AuthorId,
+            GenreId = dto.GenreId
+        };
+
         await _bookRepository.AddBook(book);
-       return StatusCode(201, "Book added successfully");
+
+        return StatusCode(201, "Book added successfully");
     }
 
-   [HttpPut]
-public async Task<IActionResult> UpdateBook(Book book)
-{
-    try
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> UpdateBook(int id, BookUpdateDto dto)
     {
-        await _bookRepository.UpdateBook(book);
-        return Ok("Book updated successfully");
-    }
-    catch (Exception ex) when (ex.Message == "Book not found")
-    {
-        return NotFound(ex.Message);
-    }
-}
+        try
+        {
+            var book = new Book
+            {
+                Id = id,
+                Title = dto.Title,
+                PublishedYear = dto.PublishedYear,
+                TotalCopies = dto.TotalCopies,
+                AuthorId = dto.AuthorId,
+                GenreId = dto.GenreId
+            };
 
-    [HttpDelete("{id:int}")]
-public async Task<IActionResult> DeleteBook(int id)
-{
-    try
-    {
-        await _bookRepository.DeleteBook(id);
-        return Ok("Book deleted successfully");
+            await _bookRepository.UpdateBook(book);
+
+            return Ok("Book updated successfully");
+        }
+        catch (Exception ex) when (ex.Message == "Book not found")
+        {
+            return NotFound(ex.Message);
+        }
     }
-    catch (Exception ex) when (ex.Message == "Book not found")
-    {
-        return NotFound(ex.Message);
-    }
-}
 
     [HttpGet("author/{authorId:int}")]
     public async Task<IActionResult> GetBooksByAuthor(int authorId)
     {
         var books = await _bookRepository.GetBooksByAuthor(authorId);
-        return Ok(books);
+
+        var result = books.Select(book => new BookReadDto
+        {
+            Id = book.Id,
+            Title = book.Title,
+            PublishedYear = book.PublishedYear,
+            TotalCopies = book.TotalCopies,
+            AuthorId = book.AuthorId,
+            GenreId = book.GenreId
+        });
+
+        return Ok(result);
     }
 
     [HttpGet("genre/{genreId:int}")]
     public async Task<IActionResult> GetBooksByGenre(int genreId)
     {
         var books = await _bookRepository.GetBooksByGenre(genreId);
-        return Ok(books);
+
+        var result = books.Select(book => new BookReadDto
+        {
+            Id = book.Id,
+            Title = book.Title,
+            PublishedYear = book.PublishedYear,
+            TotalCopies = book.TotalCopies,
+            AuthorId = book.AuthorId,
+            GenreId = book.GenreId
+        });
+
+        return Ok(result);
     }
 }
