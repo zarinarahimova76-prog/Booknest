@@ -1,0 +1,46 @@
+2026-11-11 21:48:32.932 +05:00 [INF] BookNest application started
+2026-11-11 21:48:33.024 +05:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5052: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-11-11 21:54:03.612 +05:00 [INF] BookNest application started
+2026-11-11 22:01:54.725 +05:00 [INF] BookNest application started
+2026-11-11 22:02:27.488 +05:00 [INF] HTTP GET /swagger/index.html responded 304 in 44.1963 ms
+2026-11-11 22:02:27.595 +05:00 [INF] HTTP GET /swagger/index.js responded 304 in 0.4495 ms
+2026-11-11 22:02:27.600 +05:00 [INF] HTTP GET /swagger/index.css responded 304 in 6.3035 ms
+2026-11-11 22:02:27.600 +05:00 [INF] HTTP GET /swagger/swagger-ui.css responded 304 in 7.3274 ms
+2026-11-11 22:02:27.601 +05:00 [INF] HTTP GET /swagger/swagger-ui-standalone-preset.js responded 304 in 6.4070 ms
+2026-11-11 22:02:27.610 +05:00 [INF] HTTP GET /swagger/swagger-ui-bundle.js responded 304 in 16.0093 ms
+2026-11-11 22:02:27.763 +05:00 [INF] HTTP GET /swagger/favicon-32x32.png responded 304 in 0.1799 ms
+2026-11-11 22:02:27.816 +05:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 62.3530 ms
+2026-11-11 22:14:16.398 +05:00 [INF] BookNest application started
+2026-11-11 22:14:37.571 +05:00 [INF] HTTP GET /swagger/index.html responded 200 in 34.7890 ms
+2026-11-11 22:14:39.662 +05:00 [INF] HTTP GET /swagger/index.html responded 304 in 1.8762 ms
+2026-11-11 22:14:39.725 +05:00 [INF] HTTP GET /swagger/swagger-ui.css responded 304 in 8.9862 ms
+2026-11-11 22:14:39.724 +05:00 [INF] HTTP GET /swagger/index.css responded 304 in 2.4280 ms
+2026-11-11 22:14:39.731 +05:00 [INF] HTTP GET /swagger/swagger-ui-standalone-preset.js responded 304 in 1.7134 ms
+2026-11-11 22:14:39.733 +05:00 [INF] HTTP GET /swagger/index.js responded 304 in 0.6318 ms
+2026-11-11 22:14:39.736 +05:00 [INF] HTTP GET /swagger/swagger-ui-bundle.js responded 304 in 14.1769 ms
+2026-11-11 22:14:39.950 +05:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 51.0835 ms
+2026-11-11 22:14:39.989 +05:00 [INF] HTTP GET /swagger/favicon-32x32.png responded 304 in 0.1818 ms

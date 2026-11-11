@@ -11,84 +11,106 @@ namespace WebApi.Controllers;
 public class AuthorsController : ControllerBase
 {
     private readonly IAuthorRepository _authorRepository;
+    private readonly ILogger<AuthorsController> _logger;
 
-    public AuthorsController(IAuthorRepository authorRepository)
-    {
-        _authorRepository = authorRepository;
+    public AuthorsController(
+    IAuthorRepository authorRepository,
+    ILogger<AuthorsController> logger)
+   {
+    _authorRepository = authorRepository;
+    _logger = logger;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAuthors()
+     public async Task<IActionResult> GetAuthors()
     {
-        var authors = await _authorRepository.GetAll();
+    _logger.LogInformation("Request received: GetAuthors");
 
-        var result = authors.Select(author => new AuthorReadDto
-        {
-            Id = author.Id,
-            FullName = author.FullName,
-            Country = author.Country,
-            BirthYear = author.BirthYear
-        });
+    var authors = await _authorRepository.GetAll();
 
-        return Ok(result);
+    var result = authors.Select(author => new AuthorReadDto
+    {
+        Id = author.Id,
+        FullName = author.FullName,
+        Country = author.Country,
+        BirthYear = author.BirthYear
+    });
+
+    _logger.LogInformation("Response sent: GetAuthors");
+
+    return Ok(result);
     }
 
     [HttpGet("{id:int}")]
-    public async Task<IActionResult> GetAuthor(int id)
+   public async Task<IActionResult> GetAuthor(int id)
     {
-        var author = await _authorRepository.GetById(id);
+    _logger.LogInformation("Request received: GetAuthor with ID {Id}", id);
 
-        if (author == null)
-        {
-            return NotFound("Author not found");
-        }
+    var author = await _authorRepository.GetById(id);
 
-        var result = new AuthorReadDto
-        {
-            Id = author.Id,
-            FullName = author.FullName,
-            Country = author.Country,
-            BirthYear = author.BirthYear
-        };
-
-        return Ok(result);
+    if (author == null)
+    {
+        _logger.LogWarning("Response sent: Author with ID {Id} not found", id);
+        return NotFound("Author not found");
     }
 
-    [HttpPost]
-    public async Task<IActionResult> AddAuthor(AuthorCreateDto dto)
+    var result = new AuthorReadDto
+    {
+        Id = author.Id,
+        FullName = author.FullName,
+        Country = author.Country,
+        BirthYear = author.BirthYear
+    };
+
+    _logger.LogInformation("Response sent: GetAuthor with ID {Id}", id);
+
+    return Ok(result);
+   }
+
+     [HttpPost]
+   public async Task<IActionResult> AddAuthor(AuthorCreateDto dto)
+   {
+    _logger.LogInformation("Request received: AddAuthor");
+
+    var author = new Author
+    {
+        FullName = dto.FullName,
+        Country = dto.Country,
+        BirthYear = dto.BirthYear
+    };
+
+    await _authorRepository.Add(author);
+
+    _logger.LogInformation("Response sent: AddAuthor");
+
+    return StatusCode(201, "Author added successfully");
+   }
+
+    [HttpPut("{id:int}")]
+public async Task<IActionResult> UpdateAuthor(int id, AuthorUpdateDto dto)
+{
+    _logger.LogInformation("Request received: UpdateAuthor with ID {Id}", id);
+
+    try
     {
         var author = new Author
         {
+            Id = id,
             FullName = dto.FullName,
             Country = dto.Country,
             BirthYear = dto.BirthYear
         };
 
-        await _authorRepository.Add(author);
+        await _authorRepository.Update(author);
 
-        return StatusCode(201, "Author added successfully");
+        _logger.LogInformation("Response sent: UpdateAuthor with ID {Id}", id);
+
+        return Ok("Author updated successfully");
     }
-
-    [HttpPut("{id:int}")]
-    public async Task<IActionResult> UpdateAuthor(int id, AuthorUpdateDto dto)
+    catch (Exception ex) when (ex.Message == "Author not found")
     {
-        try
-        {
-            var author = new Author
-            {
-                Id = id,
-                FullName = dto.FullName,
-                Country = dto.Country,
-                BirthYear = dto.BirthYear
-            };
-
-            await _authorRepository.Update(author);
-
-            return Ok("Author updated successfully");
-        }
-        catch (Exception ex) when (ex.Message == "Author not found")
-        {
-            return NotFound(ex.Message);
-        }
+        _logger.LogWarning("Response sent: Author with ID {Id} not found", id);
+        return NotFound(ex.Message);
     }
+}
 }

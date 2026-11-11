@@ -41,3 +41,13 @@
 /Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Swashbuckle.AspNetCore.Swagger.dll
 /Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Microsoft.Extensions.DependencyModel.dll
+/Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Serilog.dll
+/Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Serilog.AspNetCore.dll
+/Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Serilog.Extensions.Hosting.dll
+/Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Serilog.Extensions.Logging.dll
+/Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Serilog.Formatting.Compact.dll
+/Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Serilog.Settings.Configuration.dll
+/Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Serilog.Sinks.Console.dll
+/Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Serilog.Sinks.Debug.dll
+/Users/rahimova/Desktop/BookNest-Full/WebApi/bin/Debug/net10.0/Serilog.Sinks.File.dll
