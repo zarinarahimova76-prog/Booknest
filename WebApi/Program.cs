@@ -1,4 +1,5 @@
 
+using WebApi.Middlewares;
 using Domain.Interfaces;
 using Infrastructure.Repositories;
 using Serilog;
@@ -16,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
+
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 
@@ -23,6 +25,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<RequestMiddleware>();
+
 Log.Information("BookNest application started");
 
 app.UseSerilogRequestLogging();
